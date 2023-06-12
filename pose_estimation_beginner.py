@@ -1,5 +1,4 @@
 import cv2
-import matplotlib.pyplot as plt
 import mediapipe as mp
 import time
 
@@ -10,7 +9,7 @@ pose = mpPose.Pose()
 
 
 # capturar video 
-cap = cv2.VideoCapture('Pose Estimation Videos/video2-25fps.mp4')
+cap = cv2.VideoCapture('Pose Estimation Videos/eric.mp4')
 pTime = 0
 while True:
     # ler video
@@ -20,6 +19,12 @@ while True:
     print(results.pose_landmarks)
     if results.pose_landmarks:
         mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
+        for id, lm in enumerate(results.pose_landmarks.landmark):
+            h, w, c = img.shape
+            print(id, lm)
+            cx, cy = int(lm.x * w), int(lm.y * h)
+            cv2.circle(img, (cx, cy), 10, (255, 0, 0), cv2.FILLED)
+
 
 
     # checar frame rate
