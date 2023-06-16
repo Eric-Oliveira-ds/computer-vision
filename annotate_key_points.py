@@ -1,7 +1,7 @@
 import cv2
 import glob
 import sys
-import json
+import csv
 
 # Função para lidar com o clique do mouse
 def mouse_callback(event, x, y, flags, param):
@@ -57,10 +57,14 @@ for image_path in image_paths:
     if stop_execution:
         break
 
-    # Salvar as coordenadas dos pontos-chave em um arquivo JSON
-    json_filename = f"{image_path}.json"
-    with open(json_filename, 'w') as json_file:
-        json.dump(key_points, json_file)
+    # Salvar as coordenadas dos pontos-chave em um arquivo
+    csv_filename = f"{image_path}.csv"
+    with open(csv_filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(key_points)
+
+    # Limpar a lista de pontos-chave para a próxima imagem
+    key_points.clear()
 
     # Fechar a janela atual antes de prosseguir para a próxima imagem
     cv2.destroyAllWindows()
