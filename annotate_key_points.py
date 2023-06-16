@@ -14,7 +14,7 @@ def mouse_callback(event, x, y, flags, param):
         key_points.append([x, y])  # Converter para uma lista ao invés de tupla
 
 # Caminho do diretório de imagens
-image_directory = "Train Custom Key Point Detection Model/imagens"
+image_directory = "Train Custom Key Point Detection Model/imagens_annotation"
 
 # Padrão de correspondência para as extensões de imagem
 image_pattern = "*.jpg"  # ou "*.png", "*.jpeg", etc.
